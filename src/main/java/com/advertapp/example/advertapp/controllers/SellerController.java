@@ -15,11 +15,6 @@ public class SellerController {
     @Autowired
     SellerRepository sellerRepository;
 
-    @GetMapping
-    public List<Seller> getAllSellers() {
-        return sellerRepository.findAll();
-    }
-
     @GetMapping("{id")
     public Optional<Seller> getSeller(@PathVariable Long id) {
         return sellerRepository.findById(id);
