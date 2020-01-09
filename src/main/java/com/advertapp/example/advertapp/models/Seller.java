@@ -1,6 +1,7 @@
 package com.advertapp.example.advertapp.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,8 +16,13 @@ public class Seller {
     @Column(name="name")
     private String name;
 
+    @OneToMany(mappedBy = "seller" )
+    private List<Advert> adverts;
+
     public Seller(String name) {
         this.name = name;
+        this.adverts = new ArrayList<Advert>();
+
 
     }
 
