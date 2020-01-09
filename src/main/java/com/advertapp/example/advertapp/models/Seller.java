@@ -15,10 +15,8 @@ public class Seller {
     @Column(name="name")
     private String name;
 
-    @OneToMany(mappedBy = "seller")
-    private List<Advert> adverts;
-
     public Seller(String name) {
+        this.name = name;
 
     }
 
@@ -42,11 +40,7 @@ public class Seller {
         this.name = name;
     }
 
-    public List<Advert> getAdverts() {
-        return adverts;
-    }
 
-    public void setAdverts(List<Advert> adverts) {
-        this.adverts = adverts;
-    }
+
+
 }
