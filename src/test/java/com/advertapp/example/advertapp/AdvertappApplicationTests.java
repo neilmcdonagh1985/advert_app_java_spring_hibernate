@@ -1,7 +1,9 @@
 package com.advertapp.example.advertapp;
 import com.advertapp.example.advertapp.models.Advert;
+import com.advertapp.example.advertapp.models.Category;
 import com.advertapp.example.advertapp.models.Seller;
 import com.advertapp.example.advertapp.repositories.AdvertRepository;
+import com.advertapp.example.advertapp.repositories.CategoryRepository;
 import com.advertapp.example.advertapp.repositories.SellerRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ class AdvertappApplicationTests {
 
 	@Autowired
 	AdvertRepository advertRepository;
+
+	@Autowired
+	CategoryRepository categoryRepository;
 
 	@Test
 	public void contextLoads() {
@@ -35,6 +40,24 @@ class AdvertappApplicationTests {
 
 		Advert advert1 = new Advert("Bike for sale", seller2);
 		advertRepository.save(advert1);
+	}
+
+	@Test
+	public void createCategoryAndAdverts() {
+
+		Seller seller3 = new Seller("Susan");
+		sellerRepository.save(seller3);
+
+		Category category1 = new Category("vehicles");
+		categoryRepository.save(category1);
+
+		Advert advert2 = new Advert("Ballet lessons available", seller3);
+		advertRepository.save(advert2);
+
+		category1.addAdvert(advert2);
+		categoryRepository.save(category1);
+
+
 	}
 
 }

@@ -1,5 +1,4 @@
 package com.advertapp.example.advertapp.models;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +21,6 @@ public class Seller {
     public Seller(String name) {
         this.name = name;
         this.adverts = new ArrayList<Advert>();
-
-
     }
 
     public Seller() {
