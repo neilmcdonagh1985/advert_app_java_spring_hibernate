@@ -31,13 +31,13 @@ class AdvertappApplicationTests {
 
 	@Test
 	public void createSeller() {
-		Seller seller1 = new Seller("John");
+		Seller seller1 = new Seller("John", "07655682112", "john@johnswork.com");
 		sellerRepository.save(seller1);
 	}
 
 	@Test
 	public void createAdvertAndSeller() {
-		Seller seller2 = new Seller("Steve");
+		Seller seller2 = new Seller("Steve", "01365778932", "steve@steveshouse.com");
 		sellerRepository.save(seller2);
 
 		Advert advert1 = new Advert("Bike for sale", "brand new", new Date(), false, 35, seller2);
@@ -47,7 +47,7 @@ class AdvertappApplicationTests {
 	@Test
 	public void createCategoryAndAdverts() {
 
-		Seller seller3 = new Seller("Susan");
+		Seller seller3 = new Seller("Susan", "07796657652", "susan@yahoo.com");
 		sellerRepository.save(seller3);
 
 		Category category1 = new Category("vehicles");

@@ -15,10 +15,18 @@ public class Seller {
     @Column(name="name")
     private String name;
 
+    @Column(name="phoneNumber")
+    private String phoneNumber;
+
+    @Column(name="email")
+    private String email;
+
     @OneToMany(mappedBy = "seller" )
     private List<Advert> adverts;
 
-    public Seller(String name) {
+    public Seller(String name, String phoneNumber, String email) {
+        this.phoneNumber = phoneNumber;
+        this.email = email;
         this.name = name;
         this.adverts = new ArrayList<Advert>();
     }
@@ -49,5 +57,21 @@ public class Seller {
 
     public void setAdverts(List<Advert> adverts) {
         this.adverts = adverts;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
