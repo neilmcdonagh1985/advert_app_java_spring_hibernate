@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
+
 
 @SpringBootTest
 class AdvertappApplicationTests {
@@ -38,7 +40,7 @@ class AdvertappApplicationTests {
 		Seller seller2 = new Seller("Steve");
 		sellerRepository.save(seller2);
 
-		Advert advert1 = new Advert("Bike for sale", seller2);
+		Advert advert1 = new Advert("Bike for sale", "brand new", new Date(), false, 35, seller2);
 		advertRepository.save(advert1);
 	}
 
@@ -51,7 +53,7 @@ class AdvertappApplicationTests {
 		Category category1 = new Category("vehicles");
 		categoryRepository.save(category1);
 
-		Advert advert2 = new Advert("Ballet lessons available", seller3);
+		Advert advert2 = new Advert("Ballet lessons available", "start in March", new Date(), false, 25, seller3);
 		advertRepository.save(advert2);
 
 		category1.addAdvert(advert2);

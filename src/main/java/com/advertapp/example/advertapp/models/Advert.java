@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,8 +16,20 @@ public class Advert {
     @Column(name="id")
     private Long id;
 
+    @Column(name="title")
+    private String title;
+
     @Column(name="description")
     private String description;
+
+    @Column(name="date_listed")
+    private Date dateListed;
+
+    @Column(name="urgent_or_not")
+    private Boolean urgentOrNot;
+
+    @Column(name="price")
+    private int price;
 
     @JsonIgnoreProperties("adverts")
     @ManyToOne
@@ -41,8 +54,12 @@ public class Advert {
     )
     private List<Category> categories;
 
-    public Advert(String description, Seller seller) {
+    public Advert(String title, String description, Date dateListed, Boolean urgentOrNot, int price, Seller seller) {
+        this.title = title;
         this.description = description;
+        this.dateListed = dateListed;
+        this.urgentOrNot = urgentOrNot;
+        this.price = price;
         this.seller = seller;
         this.categories = new ArrayList<>();
     }
@@ -86,5 +103,37 @@ public class Advert {
 
     public void addCategory(Category category) {
         this.categories.add(category);
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getDateListed() {
+        return dateListed;
+    }
+
+    public void setDateListed(Date dateListed) {
+        this.dateListed = dateListed;
+    }
+
+    public Boolean getUrgentOrNot() {
+        return urgentOrNot;
+    }
+
+    public void setUrgentOrNot(Boolean urgentOrNot) {
+        this.urgentOrNot = urgentOrNot;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

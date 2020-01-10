@@ -11,6 +11,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -34,13 +36,13 @@ public class DataLoader implements ApplicationRunner {
         Seller seller2 = new Seller("Lisa");
         sellerRepository.save(seller2);
 
-        Advert advert1 = new Advert("Macbook repairs", seller1);
+        Advert advert1 = new Advert("Macbook repairs", "one-off-payment", new Date(), false, 20, seller1);
         advertRepository.save(advert1);
 
-        Advert advert2 = new Advert("Dodgy DVDs", seller2);
+        Advert advert2 = new Advert("Dodgy DVDs", "complete knock-offs", new Date(), false, 5, seller2);
         advertRepository.save(advert2);
 
-        Advert advert3 = new Advert("Yoga and stuff", seller1);
+        Advert advert3 = new Advert("Yoga and stuff", "not too hippy-dippy", new Date(), false, 0, seller1);
         advertRepository.save(advert3);
 
         Category category1 = new Category("entertainment");
