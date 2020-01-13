@@ -11,6 +11,10 @@ import java.util.List;
 @RepositoryRestResource(excerptProjection = EmbedCategories.class)
 public interface AdvertRepository extends JpaRepository<Advert, Long>, AdvertRepositoryCustom {
 
+    List<Advert> findByDescriptionContaining(String infix);
+
+    List<Advert> findByTitleContaining(String infix);
+
 
 
 }

@@ -74,6 +74,18 @@ class AdvertappApplicationTests {
 		assertEquals("Dodgy DVDs", found.get(0).getTitle());
 	}
 
+	@Test
+	public void findByDescriptionContaining() {
+		List<Advert> found = advertRepository.findByDescriptionContaining("nice");
+		assertEquals("Volvo for sale", found.get(0).getTitle());
+	}
+
+	@Test
+	public void findByTitleContaining() {
+		List<Advert> found = advertRepository.findByTitleContaining("stu");
+		assertEquals("Yoga and stuff", found.get(0).getTitle());
+	}
+
 
 
 }
