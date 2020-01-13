@@ -68,6 +68,12 @@ class AdvertappApplicationTests {
 		assertEquals(2, found.size());
 	}
 
+	@Test
+	public void findAdvertsThatHaveSellerNamed() {
+		List<Advert> found = advertRepository.findAdvertsThatHaveSellerNamed("Lisa");
+		assertEquals("Dodgy DVDs", found.get(0).getTitle());
+	}
+
 
 
 }

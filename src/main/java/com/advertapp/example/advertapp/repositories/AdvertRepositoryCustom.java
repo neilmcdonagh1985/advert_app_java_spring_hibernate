@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface AdvertRepositoryCustom {
     List<Advert> findAdvertsThatHaveCategoryNamed(String categoryName);
+
+    List<Advert> findAdvertsThatHaveSellerNamed(String sellerName);
 }

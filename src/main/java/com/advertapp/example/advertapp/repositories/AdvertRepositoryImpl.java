@@ -31,4 +31,20 @@ public class AdvertRepositoryImpl {
         return result;
     }
 
+    @Transactional
+    public List<Advert> findAdvertsThatHaveSellerNamed(String sellerName) {
+        List<Advert> result = null;
+        Session session = entityManager.unwrap(Session.class);
+        try{
+            Criteria cr = session.createCriteria(Advert.class);
+            cr.createAlias("seller", "sellerAlias");
+            cr.add(Restrictions.eq("sellerAlias.name", sellerName));
+            result = cr.list();
+        }
+        catch (HibernateException ex) {
+            ex.printStackTrace();;
+        }
+        return result;
+    }
+
 }
