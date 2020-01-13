@@ -80,6 +80,9 @@ public class DataLoader implements ApplicationRunner {
         category2.addAdvert(advert6);
         categoryRepository.save(category2);
 
+        category3.addAdvert(advert4);
+        categoryRepository.save(category3);
+
 
     }
 

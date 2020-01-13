@@ -9,8 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Date;
+import java.util.List;
 
 
 @SpringBootTest
@@ -58,8 +60,14 @@ class AdvertappApplicationTests {
 
 		category1.addAdvert(advert2);
 		categoryRepository.save(category1);
-
-
 	}
+
+	@Test
+	public void findAdvertsThatHaveCategoryNamed() {
+		List<Advert> found = advertRepository.findAdvertsThatHaveCategoryNamed("jobs");
+		assertEquals(2, found.size());
+	}
+
+
 
 }
