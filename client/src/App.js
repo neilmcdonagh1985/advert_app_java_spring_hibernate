@@ -1,11 +1,9 @@
 import React from 'react';
+import AdvertBox from "./containers/AdvertBox";
 import './App.css';
 
 function App() {
-  return (
-    <h1 className="title">This will be the front end</h1>
- 
-  );
+  return <AdvertBox />
 }
 
 export default App;
