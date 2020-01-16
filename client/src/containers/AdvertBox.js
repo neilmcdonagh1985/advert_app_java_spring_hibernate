@@ -1,25 +1,28 @@
 import React, { Component } from "react";
-import AdvertList from "../components/AdvertList"
+import AdvertList from "../components/AdvertList";
 
 class AdvertBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                {
-                    id: 1,
-                    title: "Sport Socks",
-                    description: "Two for a poun'" 
-                },
-                {
-                    id: 2,
-                    title: "Curry's",
-                    description: "Black Friday sale"
-                }
-            ]
+            data: []
         };
+        
+    }
+
+    componentDidMount() {
+            fetch('http://localhost:8080/adverts').then(
+                function(response) {
+                    return response.json();
+                }
+            ).then(jsonData => {
+                this.setState({ data: jsonData['_embedded'].adverts});
+                console.log(jsonData);
+            });
 
     }
+
+
     render() {
         return (
             <div className="advert-box">
@@ -29,5 +32,7 @@ class AdvertBox extends Component {
         );
     }
 }
+
+
 
 export default AdvertBox;
