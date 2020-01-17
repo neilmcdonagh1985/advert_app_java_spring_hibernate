@@ -1,9 +1,9 @@
 import React from 'react';
-import AdvertBox from "./containers/AdvertBox";
+import Main from './containers/Main';
 import './App.css';
 
 function App() {
-  return <AdvertBox />
+  return <Main />
 }
 
 export default App;
