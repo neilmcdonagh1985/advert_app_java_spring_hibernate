@@ -26,14 +26,26 @@ class Main extends Component {
 
     render() {
         return(
-            <Fragment>
-            <NavBar></NavBar>
-            <FilteredAdvertListContainer></FilteredAdvertListContainer>
-            </Fragment>
+            <Router>
+              <Fragment>
+                <NavBar />
+                <Switch>
+                <Route path="/" exact component={Home}></Route>
+                <Route path="/adverts" component={FilteredAdvertListContainer}></Route>
+                </Switch>
+              </Fragment>
+            </Router>
+            
             
 
         )
     }
 }
+
+const Home = () => (
+    <div>
+        <h1>This is the Homepage</h1>
+    </div>
+)
 
 export default Main;
