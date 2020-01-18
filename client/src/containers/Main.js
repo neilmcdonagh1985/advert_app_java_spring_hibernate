@@ -27,16 +27,24 @@ class Main extends Component {
             .then(jsonData => this.setState({ data: jsonData['_embedded'].adverts }));
     }
 
+    addNewAdvert(newAdvert) {
+        this.setState({
+            data: [...this.state.data, newAdvert]
+        })
+
+    }
+
+
     render() {
         return (
             <Router>
                 <Fragment>
                     <NavBar />
                     <Switch>
-                        <Route path="/" exact component={Home}></Route>
-                        <Route path="/new-advert" component={NewAdvertFormContainer}></Route>
-                        <Route path="/edit-advert" component={EditAdvertFormContainer}></Route>
-                        <Route path="/adverts" component={FilteredAdvertListContainer}></Route>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/new-advert" render={() => <NewAdvertFormContainer onNewAdvertAdded={this.addNewAdvert} />}></Route>
+                        <Route path="/edit-advert" render={() => <EditAdvertFormContainer />} />
+                        <Route path="/adverts" render={() => <FilteredAdvertListContainer />} />
                     </Switch>
                 </Fragment>
             </Router>
