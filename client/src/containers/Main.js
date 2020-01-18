@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import FilteredAdvertListContainer from './FilteredAdvertListContainer';
+import NewAdvertFormContainer from './NewAdvertFormContainer';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NavBar from '../components/NavBar';
+import '../style/style.css'
 
 
 class Main extends Component {
@@ -31,6 +33,7 @@ class Main extends Component {
                 <NavBar />
                 <Switch>
                 <Route path="/" exact component={Home}></Route>
+                <Route path="/new-advert" component={NewAdvertFormContainer}></Route>
                 <Route path="/adverts" component={FilteredAdvertListContainer}></Route>
                 </Switch>
               </Fragment>

@@ -1,0 +1,19 @@
+.new-advert-form {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;  
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+
+
+/* input[type=text], textarea {
+    width: 50%;
+    padding: 12px;
+    resize: vertical;
+} */
