@@ -16,11 +16,11 @@ class NewAdvertFormContainer extends Component {
     render() {
         return (
             <div className="new-advert-form-container">
-            <NewAdvertForm />
-        </div>
+                <NewAdvertForm />
+            </div>
 
         )
-        
+
     }
 }
 

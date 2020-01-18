@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import FilteredAdvertListContainer from './FilteredAdvertListContainer';
 import NewAdvertFormContainer from './NewAdvertFormContainer';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import EditAdvertFormContainer from './EditAdvertFormContainer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import '../style/style.css'
 
@@ -13,7 +14,7 @@ class Main extends Component {
             data: []
         }
 
-        this.fetchAllAdverts = this.fetchAllAdverts.bind(this);    
+        this.fetchAllAdverts = this.fetchAllAdverts.bind(this);
     }
 
     componentDidMount() {
@@ -22,24 +23,25 @@ class Main extends Component {
 
     fetchAllAdverts() {
         fetch('http://localhost:8080/adverts')
-        .then(response => response.json())
-        .then(jsonData => this.setState({ data: jsonData['_embedded'].adverts}));
+            .then(response => response.json())
+            .then(jsonData => this.setState({ data: jsonData['_embedded'].adverts }));
     }
 
     render() {
-        return(
+        return (
             <Router>
-              <Fragment>
-                <NavBar />
-                <Switch>
-                <Route path="/" exact component={Home}></Route>
-                <Route path="/new-advert" component={NewAdvertFormContainer}></Route>
-                <Route path="/adverts" component={FilteredAdvertListContainer}></Route>
-                </Switch>
-              </Fragment>
+                <Fragment>
+                    <NavBar />
+                    <Switch>
+                        <Route path="/" exact component={Home}></Route>
+                        <Route path="/new-advert" component={NewAdvertFormContainer}></Route>
+                        <Route path="/edit-advert" component={EditAdvertFormContainer}></Route>
+                        <Route path="/adverts" component={FilteredAdvertListContainer}></Route>
+                    </Switch>
+                </Fragment>
             </Router>
-            
-            
+
+
 
         )
     }
