@@ -27,13 +27,11 @@ class NewAdvertForm extends Component {
         const sellerEmail = this.state.sellerEmail.trim();
         const advertTitle = this.state.advertTitle.trim();
         const advertDescription = this.state.advertDescription.trim();
+        const dateListed = this.state.dateListed;
         const urgentOrNot = this.state.urgentOrNot;
         const price = this.state.price.trim();
 
-        // if (!sellerName || !sellerPhoneNumber || !sellerEmail || !advertTitle || !advertDescription || !urgentOrNot || !price) {
-            // return
-        // } else {
-            this.props.onNewAdvertSubmit({sellerName, sellerPhoneNumber, sellerEmail, advertTitle, advertDescription, urgentOrNot, price});
+            this.props.onNewAdvertSubmit({sellerName, sellerPhoneNumber, sellerEmail, advertTitle, advertDescription, dateListed, urgentOrNot, price});
             
             this.setState({
                 sellerName: "",
@@ -41,11 +39,12 @@ class NewAdvertForm extends Component {
                 sellerEmail: "",
                 advertTitle: "",
                 advertDescription: "",
+                dateListed: "",
                 urgentOrNot: false,
                 price: ""
             });
 
-        // }
+        
     
         
     }
