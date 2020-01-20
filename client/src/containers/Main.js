@@ -15,6 +15,7 @@ class Main extends Component {
         }
 
         this.fetchAllAdverts = this.fetchAllAdverts.bind(this);
+        this.addNewAdvert = this.addNewAdvert.bind(this);
     }
 
     componentDidMount() {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AdvertBox from "../containers/FilteredAdvertListContainer";
+import FilteredAdvertListContainer from "../containers/FilteredAdvertListContainer";
 
 class FilteredAdvertListItem extends Component {
     render() {
