@@ -35,15 +35,15 @@ class NewAdvertForm extends Component {
         // } else {
             this.props.onNewAdvertSubmit({sellerName, sellerPhoneNumber, sellerEmail, advertTitle, advertDescription, urgentOrNot, price});
             
-            // this.setState({
-            //     sellerName: "",
-            //     sellerPhoneNumber: "",
-            //     sellerEmail: "",
-            //     advertTitle: "",
-            //     advertDescription: "",
-            //     urgentOrNot: false,
-            //     price: ""
-            // });
+            this.setState({
+                sellerName: "",
+                sellerPhoneNumber: "",
+                sellerEmail: "",
+                advertTitle: "",
+                advertDescription: "",
+                urgentOrNot: false,
+                price: ""
+            });
 
         // }
     
@@ -75,7 +75,7 @@ class NewAdvertForm extends Component {
                     type="text"
                     placeholder="Enter the contact name"
                     name='sellerName'
-                    onChange={this.handleInputChange}>
+                    onChange={this.handleInputChange} required>
                 </input>
 
                 <label>Contact Phone Number</label>
@@ -83,7 +83,7 @@ class NewAdvertForm extends Component {
                     type="text"
                     placeholder="Enter the contact number"
                     name='sellerPhoneNumber'
-                    onChange={this.handleInputChange}>
+                    onChange={this.handleInputChange} required>
                 </input>
 
                 <label>Email</label>
@@ -91,7 +91,7 @@ class NewAdvertForm extends Component {
                     type="text"
                     placeholder="Enter the contact email"
                     name='sellerEmail'
-                    onChange={this.handleInputChange}>
+                    onChange={this.handleInputChange} required>
                 </input>
 
                 <div className="form-title">
@@ -103,7 +103,7 @@ class NewAdvertForm extends Component {
                     type="text"
                     placeholder="Enter the ad title"
                     name='advertTitle'
-                    onChange={this.handleInputChange}>
+                    onChange={this.handleInputChange} required>
                 </input>
 
                 <label>Description on the Ad</label>
@@ -111,7 +111,7 @@ class NewAdvertForm extends Component {
                     id="description" name="description"
                     rows="6" cols="35" placeholder="enter your description here"
                     name='advertDescription'
-                    onChange={this.handleInputChange}>
+                    onChange={this.handleInputChange} required>
                 </textarea>
 
                 <label>Mark as urgent</label>
@@ -126,7 +126,7 @@ class NewAdvertForm extends Component {
                     type="text"
                     placeholder="Enter the price"
                     name='price'
-                    onChange={this.handleInputChange}>
+                    onChange={this.handleInputChange} required>
                 </input>
 
                 <div id="new-advert-form-submit-button">
