@@ -13,19 +13,44 @@ class NewAdvertForm extends Component {
             urgentOrNot: false,
             price: ""
         };
-        // binds in here
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleUrgentOrNotChange = this.handleUrgentOrNotChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
     // methods in here
-    submitItem(event) {
+    handleSubmit(event) {
         event.preventDefault();
+        const sellerName = this.state.sellerName.trim();
+        const sellerPhoneNumber = this.state.sellerPhoneNumber.trim();
+        const sellerEmail = this.state.sellerEmail.trim();
+        const advertTitle = this.state.advertTitle.trim();
+        const advertDescription = this.state.advertDescription.trim();
+        const urgentOrNot = this.state.urgentOrNot;
+        const price = this.state.price.trim();
 
+        // if (!sellerName || !sellerPhoneNumber || !sellerEmail || !advertTitle || !advertDescription || !urgentOrNot || !price) {
+            // return
+        // } else {
+            this.props.onNewAdvertSubmit({sellerName, sellerPhoneNumber, sellerEmail, advertTitle, advertDescription, urgentOrNot, price});
+            
+            // this.setState({
+            //     sellerName: "",
+            //     sellerPhoneNumber: "",
+            //     sellerEmail: "",
+            //     advertTitle: "",
+            //     advertDescription: "",
+            //     urgentOrNot: false,
+            //     price: ""
+            // });
 
+        // }
+    
+        
     }
 
     handleInputChange = (event) => {
-        console.log(event.target.value)
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -40,7 +65,7 @@ class NewAdvertForm extends Component {
 
     render() {
         return (
-            <form className="new-advert-form" onSubmit={this.submitItem}>
+            <form className="new-advert-form" onSubmit={this.handleSubmit}>
                 <div className="form-title">
                     <h3>What are the Contact Details for your Advert?</h3>
                 </div>
@@ -105,7 +130,8 @@ class NewAdvertForm extends Component {
                 </input>
 
                 <div id="new-advert-form-submit-button">
-                    <button>
+                    <button
+                    type="submit">
                         Place Ad
                     </button>
                 </div>

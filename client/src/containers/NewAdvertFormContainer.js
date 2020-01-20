@@ -7,7 +7,7 @@ class NewAdvertFormContainer extends Component {
         this.state = {
             data: []
         }
-        // binds in here when methods created
+        this.handleNewAdvertSubmit = this.handleNewAdvertSubmit.bind(this);
 
     }
 
@@ -18,28 +18,36 @@ class NewAdvertFormContainer extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formDetail),
+            body: JSON.stringify({
+                name: formDetail.sellerName,
+                phoneNumber: formDetail.sellerPhoneNumber,
+                email: formDetail.sellerEmail
+            }),
         })
         .then(res => res.json())
-        .then(seller => {
-            fetch("http://localhost:8080/adverts", {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    title: formDetail.title,
-                    advert: `http://localhost:8080/adverts/${seller.id}`,
-                    description: formDetail.descrption,
-                    dateListed: formDetail.dateListed,
-                    urgentOrNot: formDetail.urgentOrNot,
-                    price: formDetail.price
-                })
-            })
-            .then(res => res.json())
-            .then(advert => this.props.onNewAdvertAdded(advert))
+        .then(res => {
+            console.log(res)
         })
+        // .then(seller => {
+        //     fetch("http://localhost:8080/adverts", {
+        //         method: 'POST',
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             title: formDetail.title,
+        //             advert: `http://localhost:8080/adverts/${seller.id}`,
+        //             description: formDetail.descrption,
+        //             dateListed: formDetail.dateListed,
+        //             urgentOrNot: formDetail.urgentOrNot,
+        //             price: formDetail.price
+        //         })
+        //     })
+        //     .then(res => res.json())
+        //     .then(advert => console.log(advert))
+            // .then(advert => this.props.onNewAdvertAdded(advert))
+        // })
 
     }
 
@@ -48,7 +56,7 @@ class NewAdvertFormContainer extends Component {
     render() {
         return (
             <div className="new-advert-form-container">
-                <NewAdvertForm />
+                <NewAdvertForm onNewAdvertSubmit={this.handleNewAdvertSubmit} />
             </div>
 
         )
