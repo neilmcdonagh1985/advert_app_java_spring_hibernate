@@ -42,13 +42,14 @@ class NewAdvertFormContainer extends Component {
                     })
                 })
                     .then(res => res.json())
-                    .then(advert => console.log(advert))
+                    .then(advert => this.props.onNewAdvertAdded(advert))
+                    // .then(advert => console.log(advert))
             })
-             // .then(advert => this.props.onNewAdvertAdded(advert)) 
+             
 
     }
 
-    // methods in here
+    
 
     render() {
         return (
