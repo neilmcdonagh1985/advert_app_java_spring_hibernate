@@ -7,10 +7,12 @@ class EditSellerFormContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            selectedSeller: ""
             
         }
         this.fetchAllSellers = this.fetchAllSellers.bind(this);
+        this.handleSelectedSeller = this.handleSelectedSeller.bind(this);
     }
 
     componentDidMount() {
@@ -24,6 +26,11 @@ class EditSellerFormContainer extends Component {
 
     }
 
+    handleSelectedSeller(value) {
+        this.setState({ selectedSeller: value})
+
+    }
+
     render() {
         
         return (
@@ -33,7 +40,7 @@ class EditSellerFormContainer extends Component {
                   selectedAdvert={this.state.selectedAdvert}
                   onSellerEdit={this.handleSellerEdit}/>
                 <SelectSellerDropBox
-                  sellers={this.state.data}/>
+                  sellers={this.state.data} selectSellerForEdit={this.handleSelectedSeller}/>
             </div>
             </Fragment>
         )
