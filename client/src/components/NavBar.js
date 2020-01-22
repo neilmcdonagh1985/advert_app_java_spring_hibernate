@@ -23,6 +23,9 @@ function NavBar() {
                 <Link style={navBarStyle} to='/adverts'>
                 <li>View ads</li>
                 </Link>
+                <Link style={navBarStyle} to='/sellers'>
+                <li>Update your details</li>
+                </Link>
             </ul>
         </nav>
     )

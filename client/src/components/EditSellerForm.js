@@ -1,29 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 class EditSellerForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedSeller: null
-
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-        const sellerName = this.state.sellerName;
-        const sellerPhoneNumber = this.state.sellerPhoneNumber;
-        const sellerEmail = this.state.sellerEmail;
-
-        this.props.onSellerEdit({sellerName, sellerPhoneNumber, sellerEmail});
-        
+        console.log(this.props)
+      
+     
     }
     
 
     render() {
-        return (
-            <form className="edit-seller-form" onSubmit={this.handleSubmit}>
+     return (
+            
+            <form className="edit-seller-form">
                 <div className="form-title">
                     <h3>Check your Contact Details are Up-to-date</h3>
                 </div>
