@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import FilteredAdvertListContainer from './FilteredAdvertListContainer';
 import NewAdvertFormContainer from './NewAdvertFormContainer';
-import EditSellerFormContainer from './EditSellerFormContainer';
 import SelectSellerDropBox from '../components/SelectSellerDropBox';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavBar from '../components/NavBar';
@@ -47,7 +46,6 @@ class Main extends Component {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/new-advert" render={() => <NewAdvertFormContainer onNewAdvertAdded={this.addNewAdvert} />}></Route>
-                        <Route path="/edit-advert" render={() => <EditSellerFormContainer adverts={this.state.data} />} />
                         <Route path="/adverts" render={() => <FilteredAdvertListContainer />} />
                         <Route path="/sellers" render={() => <SelectSellerDropBox />} />
                     </Switch>

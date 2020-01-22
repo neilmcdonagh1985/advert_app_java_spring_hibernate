@@ -23,8 +23,21 @@ class SelectSellerDropBox extends Component {
     handleEditSeller(event) {
         // this.setState({ selectedSeller: event.target.value})
         this.setState({ selectedSeller: this.state.data[event.target.value]})
-        
-        
+    }
+
+    handleSellerEdit(updatedSellerDetail) {
+        console.log(updatedSellerDetail)
+        fetch(`http://localhost:8080/sellers/${updatedSellerDetail.sellerId}`, {
+            method: "PUT",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedSellerDetail),
+        })
+        .then(res => {
+            res.json();
+        })
 
     }
 
@@ -32,7 +45,7 @@ class SelectSellerDropBox extends Component {
         const {selectedSeller} = this.state
         const renderEditSellerForm = () => {
             if (selectedSeller){
-                return <EditSellerForm selectedSeller={this.state.selectedSeller} />
+                return <EditSellerForm selectedSeller={this.state.selectedSeller} onEditSeller={this.handleSellerEdit} />
             }
         }
 
