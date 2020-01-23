@@ -11,6 +11,7 @@ class SelectSellerDropBox extends Component {
         }
         this.handleEditSeller = this.handleEditSeller.bind(this);
         this.handleSellerEdit = this.handleSellerEdit.bind(this);
+        
     }
 
     componentDidMount() {
@@ -24,10 +25,12 @@ class SelectSellerDropBox extends Component {
     handleEditSeller(event) {
         // this.setState({ selectedSeller: event.target.value})
         this.setState({ selectedSeller: this.state.data[event.target.value]})
+        
+        
     }
 
     handleSellerEdit(updatedSellerDetail) {
-        // this.setState({selectedSeller: updatedSellerDetail})
+        this.setState({selectedSeller: updatedSellerDetail})
         // console.log(updatedSellerDetail)
         fetch(`http://localhost:8080/sellers/${updatedSellerDetail.sellerId}`, {
             method: "PUT",
@@ -36,7 +39,6 @@ class SelectSellerDropBox extends Component {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                id: updatedSellerDetail.sellerId,
                 name: updatedSellerDetail.sellerName,
                 phoneNumber: updatedSellerDetail.sellerPhoneNumber,
                 email: updatedSellerDetail.sellerEmail
@@ -48,11 +50,14 @@ class SelectSellerDropBox extends Component {
 
     }
 
+    
+
     render() {
         const {selectedSeller} = this.state
         const renderEditSellerForm = () => {
             if (selectedSeller){
-                return <EditSellerForm selectedSeller={this.state.selectedSeller} onEditSeller={this.handleSellerEdit} />
+                return <EditSellerForm selectedSeller={this.state.selectedSeller} onEditSeller={this.handleSellerEdit} 
+                updateSelectedSeller={this.handleEditSeller} />
             }
         }
 

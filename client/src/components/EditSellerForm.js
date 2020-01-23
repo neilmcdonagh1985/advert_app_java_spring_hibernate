@@ -3,15 +3,27 @@ import React, { Component, Fragment } from 'react';
 class EditSellerForm extends Component {
     constructor(props) {
         super(props);
-        const {selectedSeller} = props
         this.state = {
+            sellerId: "",
+            sellerName: "",
+            sellerPhoneNumber: "",
+            sellerEmail: "",
+            
+        }
+        this.submitSellerChanges = this.submitSellerChanges.bind(this);
+        
+    }
+
+    componentDidMount() {
+        const { selectedSeller } = this.props
+        this.setState({
             sellerId: selectedSeller.id,
             sellerName: selectedSeller.name,
             sellerPhoneNumber: selectedSeller.phoneNumber,
             sellerEmail: selectedSeller.email
-        }
-        this.submitSellerChanges = this.submitSellerChanges.bind(this);
+        })
     }
+
 
     handleInputChange = (event) => {
         this.setState({
@@ -21,6 +33,7 @@ class EditSellerForm extends Component {
 
     submitSellerChanges(event) {
         // event.preventDefault();
+        console.log(this.state);
         const sellerId = this.state.sellerId;
         const sellerName = this.state.sellerName.trim();
         const sellerPhoneNumber = this.state.sellerPhoneNumber.trim();
@@ -42,17 +55,17 @@ class EditSellerForm extends Component {
 
                 <label>Contact Name</label>
                 <input
-                    type="text" defaultValue={this.state.sellerName} onChange={this.handleInputChange} name="sellerName">
+                    type="text" defaultValue={this.props.selectedSeller.name} onChange={this.handleInputChange} name="sellerName">
                 </input>
 
                 <label>Contact Phone Number</label>
                 <input
-                    type="text" defaultValue={this.state.sellerPhoneNumber} onChange={this.handleInputChange} name="sellerPhoneNumber">
+                    type="text" defaultValue={this.props.selectedSeller.phoneNumber} onChange={this.handleInputChange} name="sellerPhoneNumber">
                 </input>
 
                 <label>Email</label>
                 <input
-                    type="text" defaultValue={this.state.sellerEmail} onChange={this.handleInputChange} name="sellerEmail">
+                    type="text" defaultValue={this.props.selectedSeller.email} onChange={this.handleInputChange} name="sellerEmail">
                 </input>
 
                 <div id="edit-advert-form-submit-button">
