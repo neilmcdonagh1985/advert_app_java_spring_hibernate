@@ -10,6 +10,7 @@ class SelectSellerDropBox extends Component {
             
         }
         this.handleEditSeller = this.handleEditSeller.bind(this);
+        this.handleSellerEdit = this.handleSellerEdit.bind(this);
     }
 
     componentDidMount() {
@@ -26,6 +27,7 @@ class SelectSellerDropBox extends Component {
     }
 
     handleSellerEdit(updatedSellerDetail) {
+        // this.setState({selectedSeller: updatedSellerDetail})
         // console.log(updatedSellerDetail)
         fetch(`http://localhost:8080/sellers/${updatedSellerDetail.sellerId}`, {
             method: "PUT",
@@ -39,12 +41,10 @@ class SelectSellerDropBox extends Component {
                 phoneNumber: updatedSellerDetail.sellerPhoneNumber,
                 email: updatedSellerDetail.sellerEmail
             }),
-            //add in the properties of formSellerDetail here - see NewAdvertFormContainer for ref
         })
-        .then(res => {
-            res.json();
-        })
-        
+        // .then(res => {res.json();
+        // })
+        // .then(jsonData => this.setState({ selectedSeller: jsonData}));
 
     }
 

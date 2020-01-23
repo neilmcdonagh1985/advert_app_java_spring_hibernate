@@ -20,7 +20,7 @@ class EditSellerForm extends Component {
     }
 
     submitSellerChanges(event) {
-        event.preventDefault();
+        // event.preventDefault();
         const sellerId = this.state.sellerId;
         const sellerName = this.state.sellerName.trim();
         const sellerPhoneNumber = this.state.sellerPhoneNumber.trim();
