@@ -26,18 +26,25 @@ class SelectSellerDropBox extends Component {
     }
 
     handleSellerEdit(updatedSellerDetail) {
-        console.log(updatedSellerDetail)
+        // console.log(updatedSellerDetail)
         fetch(`http://localhost:8080/sellers/${updatedSellerDetail.sellerId}`, {
             method: "PUT",
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(updatedSellerDetail),
+            body: JSON.stringify({
+                id: updatedSellerDetail.sellerId,
+                name: updatedSellerDetail.sellerName,
+                phoneNumber: updatedSellerDetail.sellerPhoneNumber,
+                email: updatedSellerDetail.sellerEmail
+            }),
+            //add in the properties of formSellerDetail here - see NewAdvertFormContainer for ref
         })
         .then(res => {
             res.json();
         })
+        
 
     }
 
