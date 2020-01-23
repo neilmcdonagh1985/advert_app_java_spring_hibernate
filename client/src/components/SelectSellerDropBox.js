@@ -8,6 +8,7 @@ class SelectSellerDropBox extends Component {
             data: [],
             selectedSeller: ""
             
+            
         }
         this.handleEditSeller = this.handleEditSeller.bind(this);
         this.handleSellerEdit = this.handleSellerEdit.bind(this);
@@ -23,11 +24,15 @@ class SelectSellerDropBox extends Component {
     }
 
     handleEditSeller(event) {
-        // this.setState({ selectedSeller: event.target.value})
+        // if there is no selectedSeller in the state....
         this.setState({ selectedSeller: this.state.data[event.target.value]})
+
+        // else i.e. there is a selectedSeller, set a newSelectedSeller to what was clicked on.
+        // 
         
         
     }
+
 
     handleSellerEdit(updatedSellerDetail) {
         this.setState({selectedSeller: updatedSellerDetail})
@@ -44,13 +49,18 @@ class SelectSellerDropBox extends Component {
                 email: updatedSellerDetail.sellerEmail
             }),
         })
+        
         // .then(res => {res.json();
         // })
         // .then(jsonData => this.setState({ selectedSeller: jsonData}));
 
     }
 
-    
+
+
+
+
+  
 
     render() {
         const {selectedSeller} = this.state
