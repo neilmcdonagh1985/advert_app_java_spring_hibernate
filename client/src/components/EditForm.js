@@ -9,7 +9,7 @@ const EditForm = (props) => (
 
             <label>Contact Name</label>
             <input
-                type="text" defaultValue={props.selectedSeller.name} name="sellerName">
+                type="text" defaultValue={props.selectedSeller.name} onChange={props.handleInputChange} name="sellerName">
             </input>
 
             <label>Contact Phone Number</label>

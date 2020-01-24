@@ -29,7 +29,11 @@ class EditSeller extends Component {
         const showForm = this.state.showForm
         // [event.target.name]: event.target.value    
         // this.setState({ showForm: !showForm})   
-        this.setState({ selectedSeller: this.state.data[event.target.value], showForm: !showForm})
+        this.setState({ selectedSeller: this.state.data[event.target.value], showForm: !showForm,
+        sellerId: this.state.data[event.target.value].id,
+        sellerName: this.state.data[event.target.value].name,
+        sellerPhoneNumber: this.state.data[event.target.value].phoneNumber,
+        sellerEmail: this.state.data[event.target.value].email})
     }
 
 
@@ -72,7 +76,7 @@ class EditSeller extends Component {
         let message;
 
         if (showForm) {
-             form = <EditForm selectedSeller={this.state.selectedSeller} />
+             form = <EditForm selectedSeller={this.state.selectedSeller} handleInputChange={this.handleInputChange}/>
 
         }
 
