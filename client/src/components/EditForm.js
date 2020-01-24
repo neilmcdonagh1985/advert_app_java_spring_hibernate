@@ -14,12 +14,12 @@ const EditForm = (props) => (
 
             <label>Contact Phone Number</label>
             <input
-                type="text" defaultValue={props.selectedSeller.phoneNumber} name="sellerPhoneNumber">
+                type="text" defaultValue={props.selectedSeller.phoneNumber} onChange={props.handleInputChange} name="sellerPhoneNumber">
             </input>
 
             <label>Email</label>
             <input
-                type="text" defaultValue={props.selectedSeller.email} name="sellerEmail">
+                type="text" defaultValue={props.selectedSeller.email} onChange={props.handleInputChange} name="sellerEmail">
             </input>
 
             <div id="edit-advert-form-submit-button">
