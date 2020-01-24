@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 const EditForm = (props) => (
     <div>
-        <form className="edit-seller-form">
+        <form className="edit-seller-form" onSubmit={props.submitSellerChanges}>
             <div className="form-title">
                 <h3>Check your Contact Details are Up-to-date</h3>
             </div>

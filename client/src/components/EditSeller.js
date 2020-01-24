@@ -16,6 +16,8 @@ class EditSeller extends Component {
         }
         // this.submitSellerChanges = this.submitSellerChanges.bind(this);
         this.handleEditSeller = this.handleEditSeller.bind(this);
+        this.submitSellerChanges = this.submitSellerChanges.bind(this);
+        this.handleSellerEdit = this.handleSellerEdit.bind(this);
 
     }
 
@@ -26,9 +28,7 @@ class EditSeller extends Component {
     }
 
     handleEditSeller(event) {   
-        const showForm = this.state.showForm
-        // [event.target.name]: event.target.value    
-        // this.setState({ showForm: !showForm})   
+        const showForm = this.state.showForm  
         this.setState({ selectedSeller: this.state.data[event.target.value], showForm: !showForm,
         sellerId: this.state.data[event.target.value].id,
         sellerName: this.state.data[event.target.value].name,
@@ -56,16 +56,32 @@ class EditSeller extends Component {
         })
     }
 
-    // submitSellerChanges(event) {
-    //     // event.preventDefault();
-    //     console.log(this.state);
-    //     const sellerId = this.state.sellerId;
-    //     const sellerName = this.state.sellerName.trim();
-    //     const sellerPhoneNumber = this.state.sellerPhoneNumber.trim();
-    //     const sellerEmail = this.state.sellerEmail.trim();
-    //     this.props.onEditSeller({ sellerId, sellerName, sellerPhoneNumber, sellerEmail })
+    handleSellerEdit(updatedSellerDetail) {
+        fetch(`http://localhost:8080/sellers/${updatedSellerDetail.sellerId}`, {
+            method: "PUT",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: updatedSellerDetail.sellerName,
+                phoneNumber: updatedSellerDetail.sellerPhoneNumber,
+                email: updatedSellerDetail.sellerEmail
+            })
+        })
 
-    // }
+    }
+
+    submitSellerChanges(event) {
+        // event.preventDefault();
+        console.log(event)
+        const sellerId = this.state.sellerId;
+        const sellerName = this.state.sellerName.trim();
+        const sellerPhoneNumber = this.state.sellerPhoneNumber.trim();
+        const sellerEmail = this.state.sellerEmail.trim();
+        this.handleSellerEdit({sellerId, sellerName, sellerPhoneNumber, sellerEmail})
+
+    }
 
 
 
@@ -76,7 +92,8 @@ class EditSeller extends Component {
         let message;
 
         if (showForm) {
-             form = <EditForm selectedSeller={this.state.selectedSeller} handleInputChange={this.handleInputChange}/>
+             form = <EditForm selectedSeller={this.state.selectedSeller} handleInputChange={this.handleInputChange}
+             submitSellerChanges={this.submitSellerChanges}/>
 
         }
 
