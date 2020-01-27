@@ -24,6 +24,14 @@ h3 {
     color: rgb(45, 89, 104)
 }
 
+.filter-options {
+    display: flex;
+    margin-top: 15%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
 
 
 
