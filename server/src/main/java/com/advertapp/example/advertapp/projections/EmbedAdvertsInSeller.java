@@ -8,6 +8,8 @@ import java.util.List;
 @Projection(name = "embedAdvertsInSeller", types = Seller.class)
 public interface EmbedAdvertsInSeller {
     String getName();
+    String getPhoneNumber();
+    String getEmail();
     List getAdverts();
 
 }
