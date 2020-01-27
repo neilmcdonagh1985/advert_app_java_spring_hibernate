@@ -69,7 +69,7 @@ class NewAdvertForm extends Component {
                     <h3>What are the Contact Details for your Advert?</h3>
                 </div>
 
-                <label>Contact Name</label>
+                <label className="form-field">Contact Name</label>
                 <input
                     type="text"
                     placeholder="Enter the contact name"
@@ -77,7 +77,7 @@ class NewAdvertForm extends Component {
                     onChange={this.handleInputChange} required>
                 </input>
 
-                <label>Contact Phone Number</label>
+                <label className="form-field">Contact Phone Number</label>
                 <input
                     type="text"
                     placeholder="Enter the contact number"
@@ -85,7 +85,7 @@ class NewAdvertForm extends Component {
                     onChange={this.handleInputChange} required>
                 </input>
 
-                <label>Email</label>
+                <label className="form-field">Email</label>
                 <input
                     type="text"
                     placeholder="Enter the contact email"
