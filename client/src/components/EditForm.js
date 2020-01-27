@@ -7,6 +7,10 @@ const EditForm = (props) => (
                 <h3>Check your Contact Details are Up-to-date</h3>
             </div>
 
+            <label>ID</label>
+            <input type="text" defaultValue={props.selectedSeller.id} onChange={props.handleInputChange} name="sellerId">
+            </input>
+
             <label>Contact Name</label>
             <input
                 type="text" defaultValue={props.selectedSeller.name} onChange={props.handleInputChange} name="sellerName">

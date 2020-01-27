@@ -12,6 +12,7 @@ class EditSeller extends Component {
             sellerPhoneNumber: "",
             sellerEmail: "",
             showForm: false,
+            updateDetails: false
             
             
 
@@ -30,10 +31,15 @@ class EditSeller extends Component {
     }
 
     handleEditSeller(event) {   
-        const showForm = this.state.showForm
+        let showForm = this.state.showForm
+        const selectedSeller = this.state.selectedSeller
 
+        if (showForm) {
+            this.setState({showForm: false})
+            
+        }
 
-            this.setState({ selectedSeller: this.state.data[event.target.value], showForm: !showForm,
+            this.setState({ selectedSeller: this.state.data[event.target.value], // showForm: !showForm,
                 sellerId: this.state.data[event.target.value].id,
                 sellerName: this.state.data[event.target.value].name,
                 sellerPhoneNumber: this.state.data[event.target.value].phoneNumber,
@@ -87,6 +93,18 @@ class EditSeller extends Component {
 
     }
 
+    handleShowForm = (event) => {
+        this.setState({
+            updateDetails: true,
+            showForm: true
+        }) 
+    }
+
+    // shouldComponentUpdate(nextProps, nextState) {
+
+
+    // }
+
 
 
 
@@ -103,10 +121,13 @@ class EditSeller extends Component {
         if (!selectedSeller) {
             message = <Message />
         } else if (selectedSeller && !showForm) {
-            confirmationMessage = <ConfirmationMessage selectedSeller={this.stateSelectedSeller} />
+            confirmationMessage = <ConfirmationMessage selectedSeller={this.state.selectedSeller}
+            handleShowForm={this.handleShowForm} />
         }
+        // and if selectedSeller.name matches this.state.sellerName, the confirmation message shows.
+        // otherwise, nothing happens when edit is clicked.
         
-
+        // below is what shows the form if showForm == true
         if (showForm) {
              form = <EditForm selectedSeller={this.state.selectedSeller} handleInputChange={this.handleInputChange}
              submitSellerChanges={this.submitSellerChanges}/>
@@ -117,6 +138,7 @@ class EditSeller extends Component {
                 <table className="seller-table">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Phone Number</th>
                             <th>Email</th>
@@ -126,6 +148,7 @@ class EditSeller extends Component {
                     <tbody>
                         {this.state.data.map((seller, index) =>
                             <tr key={index}>
+                                <td>{seller.id}</td>
                                 <td>{seller.name}</td>
                                 <td>{seller.phoneNumber}</td>
                                 <td>{seller.email}</td>
@@ -136,7 +159,7 @@ class EditSeller extends Component {
                         )}
                     </tbody>
                 </table>
-                { message }}
+                { message }
                 { confirmationMessage }
                 { form }
             </Fragment>
@@ -153,11 +176,14 @@ const Message = () => (
 )
 
 const ConfirmationMessage = (props) => (
-    
+    <Fragment>
     <div>
-        
-        <h3>Are you sure you want to update this seller's details?</h3>
+        <h3>Are you sure you want to update {props.selectedSeller.name}'s details?</h3>
     </div>
+    <div>
+        <button onClick={props.handleShowForm}>Yes</button>
+    </div>
+    </Fragment>
 )
 
 
