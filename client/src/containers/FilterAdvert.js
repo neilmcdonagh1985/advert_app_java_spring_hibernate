@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import FilteredAdvertList from "../components/FilteredAdvertList";
 import SearchBySeller from "../components/SearchBySeller";
 import SearchByCategory from "../components/SearchByCategory";
+import SearchByKeyword from "../components/SearchByKeyword";
 
 class FilterAdvert extends Component {
     constructor(props) {
@@ -89,20 +90,22 @@ class FilterAdvert extends Component {
         const showSearchOptions = this.state.showSearchOptions;
 
         if (viewBySeller) {
-            return(
+            return (
                 <SearchBySeller sellers={this.state.sellers} 
             handleReturnToOptions={this.handleReturnToOptions} />
             )
             
         } else if (viewByCategory) {
-            return(
+            return (
                 <SearchByCategory categories={this.state.categories} 
             handleReturnToOptions={this.handleReturnToOptions} />
             ) 
         } 
         else if (viewByKeyword) {
-            searchByKeyword = <SearchByKeyword adverts={this.state.data} 
-            handleReturnToOptions={this.handleReturnToOptions}/>
+            return (
+                <SearchByKeyword adverts={this.state.adverts}
+            handleReturnToOptions={this.handleReturnToOptions} />
+            )
         }
 
         if (showSearchOptions) {
@@ -119,13 +122,7 @@ class FilterAdvert extends Component {
                     </div>
                 </div>
                 );
-        } else {
-            return (
-                <div>
-                { searchByKeyword }
-                </div>
-            )
-        }
+        } 
     }
 }
 
@@ -150,13 +147,13 @@ class FilterAdvert extends Component {
 //     </div>
 // )
 
-const SearchByKeyword = (props) => (
-    <div>
-        <h3>You have chosen to search by keyword</h3>
-        <button onClick={props.handleReturnToOptions}>
-            Return To Options
-        </button>
-    </div>
-)
+// const SearchByKeyword = (props) => (
+//     <div>
+//         <h3>You have chosen to search by keyword</h3>
+//         <button onClick={props.handleReturnToOptions}>
+//             Return To Options
+//         </button>
+//     </div>
+// )
 
 export default FilterAdvert;
