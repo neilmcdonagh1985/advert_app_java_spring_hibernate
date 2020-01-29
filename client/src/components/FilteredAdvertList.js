@@ -3,7 +3,7 @@ import FilteredAdvertListItem from "./FilteredAdvertListItem";
 
 class FilteredAdvertList extends Component {
     render() {
-        const advertNodes = this.props.data.map((advert, index) => {
+        const advertNodes = this.props.sellersAdverts.map((advert, index) => {
             return (
               <FilteredAdvertListItem title={advert.title} key={index}>{advert.description}</FilteredAdvertListItem>
             );
