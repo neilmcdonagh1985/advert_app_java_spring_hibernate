@@ -8,7 +8,9 @@ class FilterAdvert extends Component {
             data: [],
             sellers: [],
             adverts: [],
-            viewBySeller: false
+            categories: [],
+            viewBySeller: false,
+            viewByCategory: false // set this to true when the viewbycategory method is called
         };
 
         this.handleSelectedSellersAdverts = this.handleSelectedSellersAdverts.bind(this);
@@ -22,6 +24,7 @@ class FilterAdvert extends Component {
                 this.setState({ data: jsonData['_embedded'].adverts });
             });
             this.fetchAllSellers();
+            this.fetchAllCategories();
     }
 
     fetchAllSellers() {
@@ -30,6 +33,14 @@ class FilterAdvert extends Component {
             .then(jsonData => {
                 this.setState({ sellers: jsonData['_embedded'].sellers });
             });
+    }
+
+    fetchAllCategories() {
+        fetch('http://localhost:8080/categories')
+        .then(response => response.json())
+        .then(jsonData => {
+            this.setState({ categories: jsonData['_embedded'].categories})
+        });
     }
 
     handleSelectedSellersAdverts(value) {
@@ -44,6 +55,11 @@ class FilterAdvert extends Component {
 
     }
 
+    // handleSelectedCategorysAdverts(value) {
+        // 
+
+    // }
+
 
 
 
@@ -52,7 +68,7 @@ class FilterAdvert extends Component {
             <div className="filter-options">
                 <ViewBySeller sellers={this.state.sellers} 
                 handleSelectedSellersAdverts={this.handleSelectedSellersAdverts} />
-                <ViewByCategory />
+                <ViewByCategory categories={this.state.categories} />
                 <SearchByKeyword />
             </div>
             // <div className="advert-box">
@@ -74,10 +90,15 @@ const ViewBySeller = (props) => (
     </Fragment>
 )
 
-const ViewByCategory = () => (
-    <div>
-        <h3>This will be view by category</h3>
-    </div>
+const ViewByCategory = (props) => (
+    <Fragment>
+        <div className="filter-by-category">
+            <select onChange={(event) => props.handleSelectedCategoriesAdverts(event.target.value)}>
+                {props.categories.map((category, index) =>
+                <option key={index} value={category.id}>{category.categoryName}</option>)}
+            </select>
+        </div>
+    </Fragment>
 )
 
 const SearchByKeyword = () => (
