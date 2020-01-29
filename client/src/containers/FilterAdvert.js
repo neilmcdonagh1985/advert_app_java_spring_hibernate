@@ -6,107 +6,152 @@ class FilterAdvert extends Component {
         super(props);
         this.state = {
             data: [],
-            sellers: [],
-            adverts: [],
-            categories: [],
             viewBySeller: false,
-            viewByCategory: false // set this to true when the viewbycategory method is called
+            viewByCategory: false,
+            viewByKeyword: false,
+            showSearchOptions: true
         };
 
-        this.handleSelectedSellersAdverts = this.handleSelectedSellersAdverts.bind(this);
-
+        this.selectSearchByCategory = this.selectSearchByCategory.bind(this);
+        this.selectSearchBySellers = this.selectSearchBySellers.bind(this);
+        this.selectSearchByKeyword = this.selectSearchByKeyword.bind(this);
+        this.handleReturnToOptions = this.handleReturnToOptions.bind(this);
     }
 
-    componentDidMount() {
-        fetch('http://localhost:8080/adverts')
-            .then(response => response.json())
-            .then(jsonData => {
-                this.setState({ data: jsonData['_embedded'].adverts });
-            });
-            this.fetchAllSellers();
-            this.fetchAllCategories();
-    }
-
-    fetchAllSellers() {
+    selectSearchBySellers() {
+        let viewBySeller = this.state.viewBySeller;
+        let viewByCategory = this.state.viewByCategory;
+        let viewByKeyword = this.state.viewByKeyword;
         fetch('http://localhost:8080/sellers')
             .then(response => response.json())
             .then(jsonData => {
-                this.setState({ sellers: jsonData['_embedded'].sellers });
+                this.setState({ data: jsonData['_embedded'].sellers, viewBySeller: !viewBySeller, 
+                viewByCategory: false, viewByKeyword: false, showSearchOptions: false });
             });
     }
 
-    fetchAllCategories() {
+    selectSearchByCategory() {
+        let viewBySeller = this.state.viewBySeller;
+        let viewByCategory = this.state.viewByCategory;
+        let viewByKeyword = this.state.viewByKeyword;
         fetch('http://localhost:8080/categories')
-        .then(response => response.json())
-        .then(jsonData => {
-            this.setState({ categories: jsonData['_embedded'].categories})
-        });
+            .then(response => response.json())
+            .then(jsonData => {
+                this.setState({ data: jsonData['_embedded'].categories, viewByCategory: !viewByCategory,
+            viewBySeller: false, viewByKeyword: false, showSearchOptions: false });
+            })
     }
 
-    handleSelectedSellersAdverts(value) {
-        // let viewBySeller = this.state.viewBySeller
-
-
-        fetch(`http://localhost:8080/sellers/${value}/adverts`)
+    selectSearchByKeyword() {
+        let viewBySeller = this.state.viewBySeller;
+        let viewByCategory = this.state.viewByCategory;
+        let viewByKeyword = this.state.viewByKeyword;
+        fetch('http://localhost:8080/adverts')
         .then(response => response.json())
         .then(jsonData => {
-            this.setState({ adverts: jsonData['_embedded'].adverts, viewBySeller: true });
-        });
-
+            this.setState({ data: jsonData['_embedded'].adverts, viewByKeyword: !viewByKeyword,
+        viewBySeller: false, viewByCategory: false, showSearchOptions: false})
+        })
     }
 
-    // handleSelectedCategorysAdverts(value) {
-        // 
-
-    // }
-
+    handleReturnToOptions() {
+        this.setState({showSearchOptions: true, viewBySeller: false, viewByCategory: false, viewByKeyword: false})
+    }
 
 
 
     render() {
-        return (
-            <div className="filter-options">
-                <ViewBySeller sellers={this.state.sellers} 
-                handleSelectedSellersAdverts={this.handleSelectedSellersAdverts} />
-                <ViewByCategory categories={this.state.categories} />
-                <SearchByKeyword />
-            </div>
-            // <div className="advert-box">
-            //     <h2>Adverts</h2>
-            //     <FilteredAdvertList data={this.state.data} />
-            // </div>
-        );
+        const viewBySeller = this.state.viewBySeller;
+        let searchBySeller;
+        const viewByCategory = this.state.viewByCategory;
+        let searchByCategory;
+        const viewByKeyword = this.state.viewByKeyword;
+        let searchByKeyword;
+        const showSearchOptions = this.state.showSearchOptions;
+
+        if (viewBySeller) {
+            searchBySeller = <SearchBySeller sellers={this.state.data} 
+            handleReturnToOptions={this.handleReturnToOptions} />
+        } else if (viewByCategory) {
+            searchByCategory = <SearchByCategory categories={this.state.data} 
+            handleReturnToOptions={this.handleReturnToOptions} />
+        } 
+        else if (viewByKeyword) {
+            searchByKeyword = <SearchByKeyword adverts={this.state.data} 
+            handleReturnToOptions={this.handleReturnToOptions}/>
+        }
+
+        if (showSearchOptions) {
+            return (
+                <div className="filter-options">
+                    <div>
+                        <h3 onClick={this.selectSearchBySellers}>Search Ads by Seller</h3>
+                    </div>
+                    <div>
+                        <h3 onClick={this.selectSearchByCategory}>Search Ads by category</h3>
+                    </div>
+                    <div>
+                        <h3 onClick={this.selectSearchByKeyword}>Search Ads by Keyword</h3>
+                    </div>
+                </div>
+                );
+        } else {
+            return (
+                <div>
+                { searchBySeller }
+                { searchByCategory }
+                { searchByKeyword }
+                </div>
+            )
+        }
+
+
+        // return (
+        //     <Fragment>
+        //     <div className="filter-options">
+        //         <div>
+        //             <h3 onClick={this.selectSearchBySellers}>Search Ads by Seller</h3>
+        //         </div>
+        //         <div>
+        //             <h3 onClick={this.selectSearchByCategory}>Search Ads by category</h3>
+        //         </div>
+        //         <div>
+        //             <h3 onClick={this.selectSearchByKeyword}>Search Ads by Keyword</h3>
+        //         </div>
+        //     </div>
+            // { searchBySeller }
+            // { searchByCategory }
+            // { searchByKeyword }
+            // </Fragment>
+        // )
     }
 }
 
-const ViewBySeller = (props) => (
-    <Fragment>
-        <div className="filter-by-seller">
-            <select onChange={(event) => props.handleSelectedSellersAdverts(event.target.value)}>
-                {props.sellers.map((seller, index) => 
-                <option key={index} value={seller.id}>{seller.name}</option>)}
-            </select>
-        </div>
-    </Fragment>
-)
-
-const ViewByCategory = (props) => (
-    <Fragment>
-        <div className="filter-by-category">
-            <select onChange={(event) => props.handleSelectedCategoriesAdverts(event.target.value)}>
-                {props.categories.map((category, index) =>
-                <option key={index} value={category.id}>{category.categoryName}</option>)}
-            </select>
-        </div>
-    </Fragment>
-)
-
-const SearchByKeyword = () => (
+const SearchBySeller = (props) => (
     <div>
-        <h3>This will be search by keyword</h3>
+        <h3>You have chosen to search by seller</h3>
+        <button onClick={props.handleReturnToOptions}>
+            Return To Options
+        </button>
     </div>
 )
 
+const SearchByCategory = (props) => (
+    <div>
+        <h3>You have chosen to search by category</h3>
+        <button onClick={props.handleReturnToOptions}>
+            Return To Options
+        </button>
+    </div>
+)
 
+const SearchByKeyword = (props) => (
+    <div>
+        <h3>You have chosen to search by keyword</h3>
+        <button onClick={props.handleReturnToOptions}>
+            Return To Options
+        </button>
+    </div>
+)
 
 export default FilterAdvert;
