@@ -11,6 +11,7 @@ class SearchBySeller extends Component {
     }
 
     handleSelectedSellersAdverts(value) {
+        console.log(value);
         fetch(`http://localhost:8080/sellers/${value}/adverts`)
             .then(response => response.json())
             .then(jsonData => {
@@ -23,7 +24,7 @@ class SearchBySeller extends Component {
         let filteredAdvertList;
 
         if (sellersAdverts) {
-            filteredAdvertList = <FilteredAdvertList sellersAdverts={this.state.sellersAdverts} />
+            filteredAdvertList = <FilteredAdvertList adverts={this.state.sellersAdverts} />
         }
 
         return (

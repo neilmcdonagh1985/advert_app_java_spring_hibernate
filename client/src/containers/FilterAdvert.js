@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import FilteredAdvertList from "../components/FilteredAdvertList";
 import SearchBySeller from "../components/SearchBySeller";
+import SearchByCategory from "../components/SearchByCategory";
 
 class FilterAdvert extends Component {
     constructor(props) {
@@ -80,12 +81,9 @@ class FilterAdvert extends Component {
         this.setState({showSearchOptions: true, viewBySeller: false, viewByCategory: false, viewByKeyword: false})
     }
 
-
-
     render() {
         const viewBySeller = this.state.viewBySeller;
         const viewByCategory = this.state.viewByCategory;
-        let searchByCategory;
         const viewByKeyword = this.state.viewByKeyword;
         let searchByKeyword;
         const showSearchOptions = this.state.showSearchOptions;
@@ -97,8 +95,10 @@ class FilterAdvert extends Component {
             )
             
         } else if (viewByCategory) {
-            searchByCategory = <SearchByCategory categories={this.state.data} 
+            return(
+                <SearchByCategory categories={this.state.categories} 
             handleReturnToOptions={this.handleReturnToOptions} />
+            ) 
         } 
         else if (viewByKeyword) {
             searchByKeyword = <SearchByKeyword adverts={this.state.data} 
@@ -122,7 +122,6 @@ class FilterAdvert extends Component {
         } else {
             return (
                 <div>
-                { searchByCategory }
                 { searchByKeyword }
                 </div>
             )
@@ -142,14 +141,14 @@ class FilterAdvert extends Component {
 //     </div>
 // )
 
-const SearchByCategory = (props) => (
-    <div>
-        <h3>You have chosen to search by category</h3>
-        <button onClick={props.handleReturnToOptions}>
-            Return To Options
-        </button>
-    </div>
-)
+// const SearchByCategory = (props) => (
+//     <div>
+//         <h3>You have chosen to search by category</h3>
+//         <button onClick={props.handleReturnToOptions}>
+//             Return To Options
+//         </button>
+//     </div>
+// )
 
 const SearchByKeyword = (props) => (
     <div>
