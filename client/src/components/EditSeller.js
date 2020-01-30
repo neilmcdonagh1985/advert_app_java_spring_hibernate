@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import EditForm from './EditForm';
+import FilteredAdvertList from './FilteredAdvertList';
 
 class EditSeller extends Component {
     constructor(props) {
@@ -12,7 +13,8 @@ class EditSeller extends Component {
             sellerPhoneNumber: "",
             sellerEmail: "",
             showForm: false,
-            updateDetails: false
+            updateDetails: false,
+            showAds: false
             
             
 
@@ -21,6 +23,7 @@ class EditSeller extends Component {
         this.handleEditSeller = this.handleEditSeller.bind(this);
         this.submitSellerChanges = this.submitSellerChanges.bind(this);
         this.handleSellerEdit = this.handleSellerEdit.bind(this);
+        this.showSellersAdverts = this.showSellersAdverts.bind(this);
 
     }
 
@@ -46,19 +49,13 @@ class EditSeller extends Component {
                 sellerEmail: this.state.data[event.target.value].email})  
     }
 
-
-
-
-    // componentDidMount() {
-    //     const { selectedSeller } = this.props
-    //     this.setState({
-    //         sellerId: selectedSeller.id,
-    //         sellerName: selectedSeller.name,
-    //         sellerPhoneNumber: selectedSeller.phoneNumber,
-    //         sellerEmail: selectedSeller.email
-    //     })
-    // }
-
+    showSellersAdverts(event) {
+        console.log(event.target.value);
+        fetch(`http://localhost:8080/sellers/${event.target.value}/adverts`)
+        .then(response => response.json())
+        .then(jsonData => this.setState({ data: jsonData['_embedded'].adverts, 
+        showForm: false, updateDetails: false, showAds: true}))
+    }
 
     handleInputChange = (event) => {
         this.setState({
@@ -100,37 +97,34 @@ class EditSeller extends Component {
         }) 
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-
-
-    // }
-
-
-
-
     render() {
         const showForm = this.state.showForm;
+        const showAds = this.state.showAds;
+        const updateDetails = this.state.updateDetails;
         let form;
         const showMessage = this.state.showMessage;
         let message;
         const selectedSeller = this.state.selectedSeller;
         let confirmationMessage;
-        // if (!showForm) {
-        //     message = <Message />
-        // }
+        
+     
         if (!selectedSeller) {
             message = <Message />
         } else if (selectedSeller && !showForm) {
             confirmationMessage = <ConfirmationMessage selectedSeller={this.state.selectedSeller}
             handleShowForm={this.handleShowForm} />
         }
-        // and if selectedSeller.name matches this.state.sellerName, the confirmation message shows.
-        // otherwise, nothing happens when edit is clicked.
-        
-        // below is what shows the form if showForm == true
+
         if (showForm) {
              form = <EditForm selectedSeller={this.state.selectedSeller} handleInputChange={this.handleInputChange}
-             submitSellerChanges={this.submitSellerChanges}/>
+             submitSellerChanges={this.submitSellerChanges} showSellersAdverts={this.showSellersAdverts}/>
+        }
+
+        if (showAds && !showForm && !updateDetails) {
+            return (
+                <FilteredAdvertList adverts={this.state.data} />
+            )
+
         }
 
         return (
@@ -138,7 +132,6 @@ class EditSeller extends Component {
                 <table className="seller-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Name</th>
                             <th>Phone Number</th>
                             <th>Email</th>
@@ -148,7 +141,6 @@ class EditSeller extends Component {
                     <tbody>
                         {this.state.data.map((seller, index) =>
                             <tr key={index}>
-                                <td>{seller.id}</td>
                                 <td>{seller.name}</td>
                                 <td>{seller.phoneNumber}</td>
                                 <td>{seller.email}</td>
@@ -163,9 +155,7 @@ class EditSeller extends Component {
                 { confirmationMessage }
                 { form }
             </Fragment>
-        )
-
-        
+        )   
     }
 }
 
