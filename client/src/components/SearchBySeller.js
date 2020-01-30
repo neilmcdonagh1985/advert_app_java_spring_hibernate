@@ -29,16 +29,20 @@ class SearchBySeller extends Component {
 
         return (
             <Fragment>
-                <select onChange={(event) => this.handleSelectedSellersAdverts(event.target.value)}>
-                    {this.props.sellers.map((seller, index) =>
-                    <option key={index} value={seller.id}>{seller.name}</option>)}   
-                </select>
-                <button onClick={this.props.handleReturnToOptions}>
-                    Return to Options
+                <div>
+                    <select onChange={(event) => this.handleSelectedSellersAdverts(event.target.value)}>
+                        {this.props.sellers.map((seller, index) =>
+                            <option key={index} value={seller.id}>{seller.name}</option>)}
+                    </select>
+                </div>
+                <div>
+                    <button onClick={this.props.handleReturnToOptions}>
+                        Return to Options
                 </button>
-                    { filteredAdvertList }  
+                </div>
+                {filteredAdvertList}
             </Fragment>
-        )   
+        )
     }
 
 

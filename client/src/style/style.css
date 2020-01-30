@@ -16,12 +16,12 @@ label {
 }
 
 input {
-    border: 1px solid rgb(45, 89, 104);
+    border: 2px solid rgb(45, 89, 104);
     border-radius: 5px;
 }
 
 h3 {
-    color: rgb(45, 89, 104)
+    color: rgb(45, 89, 104);
 }
 
 .filter-options {
@@ -31,6 +31,41 @@ h3 {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+.filtered-advert-list {
+    text-align: center;
+}
+
+#keyword-search input {
+    height: 50px;
+    width: 300px;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 10px;
+    
+}
+
+/* #keyword-search {
+    text-align: center;
+} */
+
+button {
+    background-color: rgb(45, 89, 104);
+    color: white;
+    margin-left: 10px;
+    margin-top: 10px;
+    height: 35px;
+    width: 150px;
+}
+
+select {
+    appearance: none;
+    width: 175px;
+    height: 50px;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 

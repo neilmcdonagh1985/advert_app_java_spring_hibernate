@@ -12,7 +12,7 @@ class SearchByKeyword extends Component {
     }
 
     updateSearch(event) {
-        this.setState({ search: event.target.value.substr(0, 20)});
+        this.setState({ search: event.target.value.substr(0, 20) });
     }
 
     render() {
@@ -24,15 +24,18 @@ class SearchByKeyword extends Component {
         );
 
         return (
-            <Fragment>
-            <div>
-                <input label="search for keyword(s)" type="text" value={this.state.search}
-                onChange={this.updateSearch} />
-                <button onClick={this.props.handleReturnToOptions}>
-                    Return to Options
-                </button>
-                  <FilteredAdvertList adverts={filteredAdverts}/>                 
-            </div>
+            <Fragment>        
+                    <div id="keyword-search">
+                        <input placeholder="search for keyword(s)" type="text" value={this.state.search}
+                            onChange={this.updateSearch} />
+                    </div>
+                    <div>
+                      <button onClick={this.props.handleReturnToOptions}>
+                          Return to Options
+                      </button>
+                    </div>
+                    
+                    <FilteredAdvertList adverts={filteredAdverts} />
             </Fragment>
         )
     }

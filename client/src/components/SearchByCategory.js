@@ -32,13 +32,17 @@ class SearchByCategory extends Component {
 
         return (
             <Fragment>
+                <div>
                 <select onChange={(event) => this.handleSelectedCategorysAdverts(event.target.value)}>
                     {this.props.categories.map((category, index) =>
                     <option key={index} value={category.id}>{category.categoryName}</option>)}   
                 </select>
+                </div>
+                <div>
                 <button onClick={this.props.handleReturnToOptions}>
                     Return to Options
                 </button>
+                </div>
                     { filteredAdvertList }  
             </Fragment>
         )   
