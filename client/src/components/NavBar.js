@@ -17,9 +17,6 @@ function NavBar() {
                 <Link style={navBarStyle} to='/new-advert'>
                 <li>Place a new ad</li>
                 </Link>
-                <Link style={navBarStyle} to='/edit-advert'>
-                <li>Edit ad</li>
-                </Link>
                 <Link style={navBarStyle} to='/adverts'>
                 <li>View ads</li>
                 </Link>

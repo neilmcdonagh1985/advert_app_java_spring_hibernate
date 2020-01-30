@@ -113,12 +113,15 @@ class NewAdvertForm extends Component {
                     onChange={this.handleInputChange} required>
                 </textarea>
 
+                <div className="checkbox">
                 <label>Mark as urgent</label>
                 <input
                     type="checkbox"
                     name="urgentOrNot"
-                    onChange={this.handleUrgentOrNotChange}>
+                    onChange={this.handleUrgentOrNotChange}
+                    id="mark-as-urgent">
                 </input>
+                </div>
 
                 <label>Price</label>
                 <input

@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import EditForm from './EditForm';
 import FilteredAdvertList from './FilteredAdvertList';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 
 class EditSeller extends Component {
     constructor(props) {
@@ -14,7 +16,7 @@ class EditSeller extends Component {
             sellerEmail: "",
             showForm: false,
             updateDetails: false,
-            showAds: false
+            showAds: false,
             
             
 
@@ -24,6 +26,8 @@ class EditSeller extends Component {
         this.submitSellerChanges = this.submitSellerChanges.bind(this);
         this.handleSellerEdit = this.handleSellerEdit.bind(this);
         this.showSellersAdverts = this.showSellersAdverts.bind(this);
+        this.handleShowForm = this.handleShowForm.bind(this);
+        this.returnToForm = this.returnToForm.bind(this);
 
     }
 
@@ -31,6 +35,10 @@ class EditSeller extends Component {
         fetch('http://localhost:8080/sellers')
             .then(response => response.json())
             .then(jsonData => this.setState({ data: jsonData['_embedded'].sellers }));
+    }
+
+    handleShowForm() {
+        this.setState({ showForm: true})
     }
 
     handleEditSeller(event) {   
@@ -90,11 +98,11 @@ class EditSeller extends Component {
 
     }
 
-    handleShowForm = (event) => {
-        this.setState({
-            updateDetails: true,
-            showForm: true
-        }) 
+    returnToForm() {       
+
+            // <Link to='/sellers'></Link>
+        this.props.history.push("/adverts")
+        // this.setState({ returnToForm: true})
     }
 
     render() {
@@ -106,6 +114,10 @@ class EditSeller extends Component {
         let message;
         const selectedSeller = this.state.selectedSeller;
         let confirmationMessage;
+
+        // if (this.state.returnToForm == true) {
+        //     return <Redirect to '/sellers' />
+        // }
         
      
         if (!selectedSeller) {
@@ -122,7 +134,10 @@ class EditSeller extends Component {
 
         if (showAds && !showForm && !updateDetails) {
             return (
+                <Fragment>
                 <FilteredAdvertList adverts={this.state.data} />
+                <ReturnToFormButton returnToForm={this.returnToForm}/>
+                </Fragment>
             )
 
         }
@@ -174,6 +189,12 @@ const ConfirmationMessage = (props) => (
         <button onClick={props.handleShowForm}>Yes</button>
     </div>
     </Fragment>
+)
+
+const ReturnToFormButton = props => (
+    <div>
+        <button type="button" onClick={props.returnToForm}>Return to Form</button>
+    </div>
 )
 
 

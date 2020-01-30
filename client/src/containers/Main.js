@@ -47,7 +47,7 @@ class Main extends Component {
                         <Route path="/" exact component={Home} />
                         <Route path="/new-advert" render={() => <NewAdvertFormContainer onNewAdvertAdded={this.addNewAdvert} />}></Route>
                         <Route path="/adverts" render={() => <FilterAdvert />} />
-                        <Route path="/sellers" render={() => <EditSeller />} />
+                        <Route path="/sellers" render={(props) => <EditSeller {... props} />} />
                     </Switch>
                 </Fragment>
             </Router>

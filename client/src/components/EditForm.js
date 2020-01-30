@@ -28,23 +28,23 @@ class EditForm extends Component {
             </div>
 
             <label>ID</label>
-            <input type="text" defaultValue={this.props.selectedSeller.id} onChange={this.props.handleInputChange} name="sellerId">
-            </input>
+              <input type="text" defaultValue={this.props.selectedSeller.id} onChange={this.props.handleInputChange} name="sellerId">
+              </input>
 
             <label>Contact Name</label>
-            <input
+              <input
                 type="text" defaultValue={this.props.selectedSeller.name} onChange={this.props.handleInputChange} name="sellerName">
-            </input>
+              </input>
 
             <label>Contact Phone Number</label>
-            <input
+              <input
                 type="text" defaultValue={this.props.selectedSeller.phoneNumber} onChange={this.props.handleInputChange} name="sellerPhoneNumber">
-            </input>
+              </input>
 
             <label>Email</label>
-            <input
+              <input
                 type="text" defaultValue={this.props.selectedSeller.email} onChange={this.props.handleInputChange} name="sellerEmail">
-            </input>
+              </input>
 
             <div id="edit-advert-form-submit-button">
                 <button
