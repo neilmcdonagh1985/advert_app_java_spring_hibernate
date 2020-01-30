@@ -66,7 +66,7 @@ class NewAdvertForm extends Component {
         return (
             <form className="new-advert-form" onSubmit={this.handleSubmit}>
                 <div className="form-title">
-                    <h3>What are the Contact Details for your Advert?</h3>
+                    <h1>What are the Contact Details for your Advert?</h1>
                 </div>
 
                 <label className="form-field">Contact Name</label>
@@ -94,7 +94,7 @@ class NewAdvertForm extends Component {
                 </input>
 
                 <div className="form-title">
-                    <h3>Now Enter your Advert Details</h3>
+                    <h1>Now Enter your Advert Details</h1>
                 </div>
 
                 <label>Title of the Ad</label>

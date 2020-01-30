@@ -15,7 +15,7 @@ label {
     margin-top: 15px;
 }
 
-input {
+input, textarea {
     border: 2px solid rgb(45, 89, 104);
     border-radius: 5px;
 }
@@ -30,7 +30,15 @@ h3 {
     text-align: center;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    cursor: pointer;    
+}
+
+#search-seller, #search-category, #search-keyword {
+    height: 250px;
+    width: 250px;
+    border: 2px solid rgb(45, 89, 104);
+    border-radius: 5px;
+    margin-left: 10px;
 }
 
 .filtered-advert-list {

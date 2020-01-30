@@ -24,7 +24,7 @@ class EditForm extends Component {
                 <div>
         <form className="edit-seller-form" onSubmit={this.props.submitSellerChanges}>
             <div className="form-title">
-                <h3>Check your Contact Details are Up-to-date</h3>
+                <h1>Check your Contact Details are Up-to-date</h1>
             </div>
 
             <label>ID</label>
