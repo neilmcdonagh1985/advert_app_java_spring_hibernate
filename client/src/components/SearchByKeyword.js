@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import FilteredAdvertList from './FilteredAdvertList';
-import FilteredAdvertListItem from './FilteredAdvertListItem';
 
 class SearchByKeyword extends Component {
     constructor(props) {
@@ -17,23 +16,19 @@ class SearchByKeyword extends Component {
     }
 
     render() {
-        
         let filteredAdverts = this.props.adverts.filter(
             (advert) => {
                 return advert.description.toLowerCase().indexOf(
                     this.state.search.toLowerCase()) !== -1;
             }
         );
+
         return (
             <Fragment>
             <div>
-                <input type="text" value={this.state.search}
+                <input label="search for keyword(s)" type="text" value={this.state.search}
                 onChange={this.updateSearch} />
-                <ul>
-                    {filteredAdverts.map((advert, index) => {
-                        return <FilteredAdvertListItem key={index} />
-                    })}
-                </ul>     
+                  <FilteredAdvertList adverts={filteredAdverts}/>                 
             </div>
             </Fragment>
         )
