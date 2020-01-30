@@ -6,6 +6,7 @@ import java.util.List;
 @Projection(name = "embedAdverts", types = Category.class)
 public interface EmbedAdverts {
     String getCategoryName();
+    Long getId();
     List getAdverts();
 
 }
