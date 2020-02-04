@@ -111,14 +111,14 @@ class FilterAdvert extends Component {
         if (showSearchOptions) {
             return (
                 <div className="filter-options">
-                    <div id="search-seller">
-                        <h2 onClick={this.selectSearchBySellers}>Search Ads by Seller</h2>
+                    <div>
+                        <button id="search-seller" onClick={this.selectSearchBySellers}>Search Ads by Seller</button>
                     </div>
-                    <div id="search-category">
-                        <h2 onClick={this.selectSearchByCategory}>Search Ads by category</h2>
+                    <div>
+                        <button id="search-category" onClick={this.selectSearchByCategory}>Search Ads by category</button>
                     </div>
-                    <div id="search-keyword">
-                        <h2 onClick={this.selectSearchByKeyword}>Search Ads by Keyword</h2>
+                    <div>
+                        <button id="search-keyword" onClick={this.selectSearchByKeyword}>Search Ads by Keyword</button>
                     </div>
                 </div>
                 );
