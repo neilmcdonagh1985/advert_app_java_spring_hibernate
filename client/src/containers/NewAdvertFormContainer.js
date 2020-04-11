@@ -5,10 +5,15 @@ class NewAdvertFormContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            categories: []
         }
         this.handleNewAdvertSubmit = this.handleNewAdvertSubmit.bind(this);
 
+    }
+
+    componentDidMount() {
+        this.fetchCategories();
     }
 
     handleNewAdvertSubmit(formDetail) {
@@ -49,12 +54,20 @@ class NewAdvertFormContainer extends Component {
 
     }
 
+    fetchCategories() {
+        fetch('http://localhost:8080/categories')
+        .then(response => response.json())
+        .then(jsonData => {
+            this.setState({ categories: jsonData['_embedded'].categories})
+        })
+    }
+
     
 
     render() {
         return (
             <div className="new-advert-form-container">
-                <NewAdvertForm onNewAdvertSubmit={this.handleNewAdvertSubmit} />
+                <NewAdvertForm onNewAdvertSubmit={this.handleNewAdvertSubmit} categories={this.state.categories} />
             </div>
 
         )
