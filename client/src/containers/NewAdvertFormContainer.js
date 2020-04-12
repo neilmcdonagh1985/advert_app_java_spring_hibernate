@@ -12,6 +12,15 @@ class NewAdvertFormContainer extends Component {
     }
 
     handleNewAdvertSubmit(formDetail) {
+
+        // pass down the categories as props and loop through them here. if formDetail.categoryName == category, store
+        // that category in a variable.  when stringifying the advert, assign the category ID this variable.
+
+        // OR
+
+        // watch videos about GET requests
+
+
         fetch("http://localhost:8080/sellers", {
             method: 'POST',
             headers: {
