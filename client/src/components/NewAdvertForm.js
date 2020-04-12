@@ -29,19 +29,17 @@ class NewAdvertForm extends Component {
         const sellerEmail = this.state.sellerEmail.trim();
         const advertTitle = this.state.advertTitle.trim();
         const advertDescription = this.state.advertDescription.trim();
-        const dateListed = this.state.dateListed;
+        const dateListed = new Date();
         const urgentOrNot = this.state.urgentOrNot;
         const price = this.state.price.trim();
-        const showConfirmationMesssage = this.state.showConfirmationMessage;
-        if (sellerName && sellerPhoneNumber && sellerEmail && advertTitle && advertDescription && 
-            dateListed && price) {
+        // const showConfirmationMesssage = this.state.showConfirmationMessage;
+        if (sellerName && sellerPhoneNumber && sellerEmail && advertTitle && advertDescription && price) {
                 this.setState({ showConfirmationMessage: true})
             }
-
        
 
             this.props.onNewAdvertSubmit({sellerName, sellerPhoneNumber, sellerEmail, advertTitle, advertDescription, dateListed, urgentOrNot, price});
-            
+
             // this.setState({
             //     sellerName: "",
             //     sellerPhoneNumber: "",
@@ -53,10 +51,9 @@ class NewAdvertForm extends Component {
             //     price: "",
             //     showConfirmationMessage: false
             // });
-        
-    
-        
+                
     }
+
 
     handleInputChange = (event) => {
         this.setState({
@@ -69,7 +66,17 @@ class NewAdvertForm extends Component {
     }
 
     confirmSubmission() {
-        this.setState({ showConfirmationMessage: false})
+        this.setState({ 
+            sellerName: "", 
+            sellerPhoneNumber: "", 
+            sellerEmail: "", 
+            advertTitle: "", 
+            advertDescription: "", 
+            dateListed: "", 
+            urgentOrNot: false, 
+            price: "", 
+            showConfirmationMessage: false
+        })
 
     }
 
