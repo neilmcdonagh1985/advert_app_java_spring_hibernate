@@ -43,7 +43,7 @@ class NewAdvertFormContainer extends Component {
                 })
                     .then(res => res.json())
                     .then(advert => this.props.onNewAdvertAdded(advert))
-                    // .then(advert => console.log(advert))
+                    .then(advert => console.log(advert))
             })
              
 
@@ -54,7 +54,7 @@ class NewAdvertFormContainer extends Component {
     render() {
         return (
             <div className="new-advert-form-container">
-                <NewAdvertForm onNewAdvertSubmit={this.handleNewAdvertSubmit} />
+                <NewAdvertForm onNewAdvertSubmit={this.handleNewAdvertSubmit} categories={this.props.categories} />
             </div>
 
         )

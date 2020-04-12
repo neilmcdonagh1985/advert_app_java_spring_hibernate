@@ -8,6 +8,7 @@ class NewAdvertForm extends Component {
             sellerPhoneNumber: "",
             sellerEmail: "",
             advertTitle: "",
+            advertCategory: "",
             advertDescription: "",
             dateListed: new Date(),
             urgentOrNot: false,
@@ -28,17 +29,18 @@ class NewAdvertForm extends Component {
         const sellerPhoneNumber = this.state.sellerPhoneNumber.trim();
         const sellerEmail = this.state.sellerEmail.trim();
         const advertTitle = this.state.advertTitle.trim();
+        const advertCategory = this.state.advertCategory;
         const advertDescription = this.state.advertDescription.trim();
         const dateListed = new Date();
         const urgentOrNot = this.state.urgentOrNot;
         const price = this.state.price.trim();
         // const showConfirmationMesssage = this.state.showConfirmationMessage;
-        if (sellerName && sellerPhoneNumber && sellerEmail && advertTitle && advertDescription && price) {
+        if (sellerName && sellerPhoneNumber && sellerEmail && advertTitle && advertCategory && advertDescription && price) {
                 this.setState({ showConfirmationMessage: true})
             }
        
 
-            this.props.onNewAdvertSubmit({sellerName, sellerPhoneNumber, sellerEmail, advertTitle, advertDescription, dateListed, urgentOrNot, price});
+            this.props.onNewAdvertSubmit({sellerName, sellerPhoneNumber, sellerEmail, advertTitle, advertCategory, advertDescription, dateListed, urgentOrNot, price});
 
             // this.setState({
             //     sellerName: "",
@@ -71,6 +73,7 @@ class NewAdvertForm extends Component {
             sellerPhoneNumber: "", 
             sellerEmail: "", 
             advertTitle: "", 
+            advertCategory: "",
             advertDescription: "", 
             dateListed: "", 
             urgentOrNot: false, 
@@ -131,6 +134,14 @@ class NewAdvertForm extends Component {
                         name='advertTitle'
                         onChange={this.handleInputChange} required>
                     </input>
+
+                    <label>Choose Your Category</label>
+                    <select
+                        name='advertCategory'
+                        onChange={this.handleInputChange}>
+                        {this.props.categories.map((category, index) =>
+                        <option key={index} value={category.id}>{category.categoryName}</option>)}
+                    </select>
     
                     <label>Description on the Ad</label>
                     <textarea

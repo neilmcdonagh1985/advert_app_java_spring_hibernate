@@ -12,22 +12,31 @@ class Main extends Component {
         super(props);
         this.state = {
             data: [],
+            categories: []
             
         }
 
         this.fetchAllAdverts = this.fetchAllAdverts.bind(this);
         this.addNewAdvert = this.addNewAdvert.bind(this);
+        this.fetchAllCategories = this.fetchAllCategories.bind(this);
         
     }
 
     componentDidMount() {
-        this.fetchAllAdverts()
+        this.fetchAllAdverts();
+        this.fetchAllCategories();
     }
 
     fetchAllAdverts() {
         fetch('http://localhost:8080/adverts')
             .then(response => response.json())
             .then(jsonData => this.setState({ data: jsonData['_embedded'].adverts }));
+    }
+
+    fetchAllCategories() {
+        fetch('http://localhost:8080/categories')
+        .then(response => response.json())
+        .then(jsonData => this.setState({ categories: jsonData['_embedded'].categories}))
     }
 
     addNewAdvert(newAdvert) {
@@ -45,7 +54,7 @@ class Main extends Component {
                     <NavBar />
                     <Switch>
                         <Route path="/" exact component={Home} />
-                        <Route path="/new-advert" render={() => <NewAdvertFormContainer onNewAdvertAdded={this.addNewAdvert} />}></Route>
+                        <Route path="/new-advert" render={() => <NewAdvertFormContainer categories={this.state.categories} onNewAdvertAdded={this.addNewAdvert} />}></Route>
                         <Route path="/adverts" render={() => <FilterAdvert />} />
                         <Route path="/sellers" render={(props) => <EditSeller {... props} />} />
                     </Switch>
