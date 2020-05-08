@@ -5,58 +5,34 @@ class NewAdvertFormContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            category: null
         }
         this.handleNewAdvertSubmit = this.handleNewAdvertSubmit.bind(this);
 
     }
+    
+    // async componentDidMount() {
+    //     const url = "http://localhost:8080/categories";
+    //     const response = await fetch(url);
+    //     const data = await response.json();
+    //     this.setState({category: data[0]});
+    // }
 
     handleNewAdvertSubmit(formDetail) {
-
-        // pass down the categories as props and loop through them here. if formDetail.categoryName == category, store
-        // that category in a variable.  when stringifying the advert, assign the category ID this variable.
-
-        // OR
-
-        // watch videos about GET requests
-
-
-        fetch("http://localhost:8080/sellers", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: formDetail.sellerName,
-                phoneNumber: formDetail.sellerPhoneNumber,
-                email: formDetail.sellerEmail
-            }),
-        })
-            .then(res => res.json())
-            .then(seller => {
-                fetch("http://localhost:8080/adverts", {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        title: formDetail.advertTitle,
-                        seller: `http://localhost:8080/adverts/${seller.id}`,
-                        description: formDetail.advertDescription,
-                        dateListed: formDetail.dateListed,
-                        urgentOrNot: formDetail.urgentOrNot,
-                        price: formDetail.price
-                    })
-                })
-                    .then(res => res.json())
-                    .then(advert => this.props.onNewAdvertAdded(advert))
-                    .then(advert => console.log(advert))
-            })
-             
-
+        // const category = JSON.stringify(formDetail.advertCategory)
+        const category = JSON.stringify(this.props.categories[formDetail.advertCategory]);
+        console.log(category);
+        //now as this is stringified, I should be able to post this to a new advert - might involve some
+        // refactoring of the advert class constructor. 
+        
+     
+        
+              
+        // .then(handleNewAdvertSubmit(formDetail))
     }
+
+   
 
     
 

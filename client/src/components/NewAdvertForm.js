@@ -140,7 +140,7 @@ class NewAdvertForm extends Component {
                         name='advertCategory'
                         onChange={this.handleInputChange}>
                         {this.props.categories.map((category, index) =>
-                        <option key={index} value={category.id}>{category.categoryName}</option>)}
+                        <option key={index} value={index}>{category.categoryName}</option>)}
                     </select>
     
                     <label>Description on the Ad</label>

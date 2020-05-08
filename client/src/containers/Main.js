@@ -46,6 +46,12 @@ class Main extends Component {
 
     }
 
+    addNewCategory(newCategory) {
+        this.setState({
+            data: [...this.state.data, newCategory]
+        })
+    }
+
 
     render() {
         return (
@@ -54,7 +60,7 @@ class Main extends Component {
                     <NavBar />
                     <Switch>
                         <Route path="/" exact component={Home} />
-                        <Route path="/new-advert" render={() => <NewAdvertFormContainer categories={this.state.categories} onNewAdvertAdded={this.addNewAdvert} />}></Route>
+                        <Route path="/new-advert" render={() => <NewAdvertFormContainer categories={this.state.categories} onNewCategoryAdded={this.addNewCategory} onNewAdvertAdded={this.addNewAdvert} />}></Route>
                         <Route path="/adverts" render={() => <FilterAdvert />} />
                         <Route path="/sellers" render={(props) => <EditSeller {... props} />} />
                     </Switch>
