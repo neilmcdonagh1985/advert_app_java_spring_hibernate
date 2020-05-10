@@ -23,13 +23,33 @@ class NewAdvertFormContainer extends Component {
         // const category = JSON.stringify(formDetail.advertCategory)
         const category = JSON.stringify(this.props.categories[formDetail.advertCategory]);
         console.log(category);
-        //now as this is stringified, I should be able to post this to a new advert - might involve some
-        // refactoring of the advert class constructor. 
-        
-     
-        
-              
-        // .then(handleNewAdvertSubmit(formDetail))
+        fetch('http://localhost:8080/sellers', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                "name": formDetail.sellerName,
+                "phoneNumber": formDetail.sellerPhoneNumber,
+                "email": formDetail.sellerEmail,
+            })         
+        })
+        .then((res) => res.json())
+        .then(seller => fetch('http://localhost:8080/adverts', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                "name": formDetail.advertTitle,
+                "description": formDetail.advertDescription,
+                "dateListed": formDetail.dateListed,
+                "urgentOrNot": formDetail.urgentOrNot,
+                "price": formDetail.price,
+                "seller": `http://localhost:8080/sellers/${seller.id}`,
+                
+            })
+        }))
+        .then((res) => res.json())
+        .then(advert => console.log(advert))
+
+        // refactor to a many to one relationship - same as seller in java modelsvvvvvvv
     }
 
    
